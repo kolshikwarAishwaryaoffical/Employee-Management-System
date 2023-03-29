@@ -1,5 +1,7 @@
 package leaveapplication.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -32,7 +34,15 @@ public class LeaveServiceImpl implements LeaveService{
 	public LeaveApply saveLeave(LeaveApply leaveApply) {
 		// TODO Auto-generated method stub
 //		leaveApply.setEmailId(null);
+		leaveApply.setLeaveStatus("pending");
 		return leaveRepository.save(leaveApply);
+	}
+
+
+	@Override
+	public List<LeaveApply> getEmpByEmailId(String email_id) {
+		// TODO Auto-generated method stub
+		return leaveRepository.findByEmailId(email_id);
 	}
 
 

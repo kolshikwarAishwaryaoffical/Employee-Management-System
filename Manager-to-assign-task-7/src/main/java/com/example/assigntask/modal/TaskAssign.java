@@ -32,27 +32,23 @@ public class TaskAssign {
 	@Column(name="description")
 	private String description;
 
-	
+	@NotNull
 	@Column(name="dueDate")
 	private LocalDate dueDate;
 
-	@NotNull
-	@NotEmpty(message="  Taskstatus should not be empty")
+	
 	@Column(name="taskSStatus")
 	private String taskStatus;
 
 	@Column(name="taskProgress")
 	private String taskProgress;
 	
-	@Email
-	@NotEmpty(message=" Employeeemailid should not be empty")
 	
 	@Column(name="email_id")
 	private String emailId;
 	
 	
-	@Email
-	@NotEmpty(message=" Manageremailid should not be empty")
+	
 	@Column(name="memail_id")
 	private String memailId;
 

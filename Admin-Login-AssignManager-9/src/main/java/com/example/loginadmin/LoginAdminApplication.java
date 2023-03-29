@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,7 @@ public class LoginAdminApplication {
       
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class HelloWorldController {
 	
 	@Autowired
@@ -113,8 +115,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        .disable()
 				.authorizeRequests()
 				.antMatchers("/authenticate","/admin/employee/addemployee","/admin/employee/getemployees"
-						,  "/admin/manager/addmanager","/admin/manager/getmanagers"
-						,"/admin/employee/{employeeEmailId}/manager/{managerEmailId}").permitAll()
+						,  "/admin/manager/addmanager","/admin/manager/getmanagers","/admin/manager/{email_id}"
+						,"/admin/employee","/admin/manager/put/{email_id}").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()

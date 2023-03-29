@@ -63,16 +63,22 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public Employee assignManager(String email_id,String memail_id) {
-		Employee employee12=employeeRepository.findByEmailId(email_id);
-		Manager manager12=managerRepository.findByEmailId(memail_id);
-		if(employee12!=null &&manager12!=null) {
-			employee12.setMemailId(memail_id);
-			employeeRepository.save(employee12);
-		}
-		return employee12;
+	public Employee assignManager(Employee employee1) {
+		//Employee employee11=employeeRepository.findByEmailId(emailId);
+//		 if(employee11 != null) {
+			 employee1.setMemailId(employee1.getMemailId());
+			
+			 //employee11.setEmailId(employee1.getEmailId());
+//		 }
+//		 else {
+//			 System.out.println("Employee Not exist");
+//		 }
+//		 
+		 
+			return employeeRepository.save(employee1);
 	}
 
+	
 
 
 }

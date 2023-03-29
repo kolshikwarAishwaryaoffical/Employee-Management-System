@@ -21,6 +21,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +45,7 @@ public class LoginManagerApplication {
 	}
 
 	@RestController
+	@CrossOrigin("http://localhost:3000")
 	public class HelloWorldController {
 		
 		@Autowired
@@ -57,6 +61,12 @@ public class LoginManagerApplication {
 		@RequestMapping(value = "/hi" , method = RequestMethod.GET)
 		public String firstPage() {
 			return "Hello World";
+		}
+		
+		@GetMapping("/loginmanager/{token}")
+		public String getLoginUser(@PathVariable("token") String token) {
+			return jwtTokenUtil.extractUsername(token);
+			
 		}
 		@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 		public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody AuthenticationRequest authenticationRequest) throws Exception {
@@ -110,7 +120,7 @@ public class LoginManagerApplication {
 			httpSecurity.csrf()
 			        .disable()
 					.authorizeRequests()
-					.antMatchers("/authenticate")
+					.antMatchers("/authenticate","/loginmanager/{token}")
 					.permitAll()
 					.anyRequest()
 					.authenticated()

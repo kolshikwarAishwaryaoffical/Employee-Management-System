@@ -1,5 +1,6 @@
 package com.example.acceptorreject.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -27,10 +28,10 @@ public class LeaveApply {
 	
 	
 	@Column
-	private Date fromDate;
+	private LocalDate fromDate;
 	
 	@Column
-	private Date toDate;
+	private LocalDate toDate;
 	
 	@Column
 	private String leaveReason;
@@ -62,19 +63,21 @@ public class LeaveApply {
 		this.memailId = memailId;
 	}
 
-	public Date getFromDate() {
+	
+
+	public LocalDate getFromDate() {
 		return fromDate;
 	}
 
-	public void setFromDate(Date fromDate) {
+	public void setFromDate(LocalDate fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public Date getToDate() {
+	public LocalDate getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(Date toDate) {
+	public void setToDate(LocalDate toDate) {
 		this.toDate = toDate;
 	}
 
@@ -97,8 +100,9 @@ public class LeaveApply {
 	public LeaveApply() {
 		
 	}
-	public LeaveApply(long leaveId, String emailId, String memailId, Date fromDate, Date toDate, String leaveReason,
-			String leaveStatus) {
+
+	public LeaveApply(long leaveId, String emailId, String memailId, LocalDate fromDate, LocalDate toDate,
+			String leaveReason, String leaveStatus) {
 		super();
 		this.leaveId = leaveId;
 		this.emailId = emailId;
@@ -108,7 +112,7 @@ public class LeaveApply {
 		this.leaveReason = leaveReason;
 		this.leaveStatus = leaveStatus;
 	}
-
+	
 	
 	
 

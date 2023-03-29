@@ -3,7 +3,9 @@ package com.example.assigntask.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.assigntask.modal.Employee;
 import com.example.assigntask.modal.TaskAssign;
+import com.example.assigntask.repository.EmployeeRepositoryinter;
 import com.example.assigntask.repository.TaskRepository;
 import com.example.assigntask.service.TaskService;
 
@@ -12,23 +14,40 @@ public class TaskServiceImpl implements TaskService{
 
 	@Autowired
 	private TaskRepository taskRepository;
-
+	@Autowired
+	private EmployeeRepositoryinter inter;
 
 	public TaskServiceImpl(TaskRepository taskRepository) {
 		super();
 		this.taskRepository = taskRepository;
 	}
-
-
+    //without
 	@Override
-	public TaskAssign saveTask(TaskAssign taskAssign) {
-
-
+	public TaskAssign saveTask(TaskAssign taskAssign,String emailId) {
+		//taskAssign.setTaskName(taskAssign.getEmailId());
 		taskAssign.setTaskStatus("NotCompleted");
-		//taskAssign.setEmail_id(taskRepository.setEmpemailToTask(memail_id));
-		
 		return taskRepository.save(taskAssign);
 	}
+//    
+//	@Override
+//	public TaskAssign saveTask(TaskAssign taskAssign,String email_id) {
+//
+//		
+//       Employee e11=inter.findByEmailId(email_id);
+//      // Employee e12 = inter.findByMemailId(e11.getMemailId());
+//       
+//       if(email_id.equals(e11.getEmailId())) {
+//    	   taskAssign.setEmailId(email_id);
+//    	   taskAssign.setTaskStatus("NotCompleted");
+//       }
+//       else {
+//    	   System.out.println("employee not added ");
+//       }
+//		
+//		//taskAssign.setEmail_id(taskRepository.setEmpemailToTask(memail_id));
+//		
+//		return taskRepository.save(taskAssign);
+//	}
 
 	//	@Override
 	//	public String setEmpemailToTask(String memail_id) {

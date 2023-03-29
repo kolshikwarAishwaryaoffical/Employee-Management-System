@@ -17,18 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.loginadmin.models.Employee;
-
+import com.example.loginadmin.repository.EmployeeRepository;
 import com.example.loginadmin.service.EmployeeService;
 
-
-
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/admin/employee")
 
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService ;
+	@Autowired
+	private EmployeeRepository  employeeRespository;
 	
 	public EmployeeController(EmployeeService employeeService) {
 		super();
@@ -46,10 +47,31 @@ public class EmployeeController {
 		return employeeService.getAllEmployees();
 		
 	}
-	@PutMapping("/{employeeEmailId}/manager/{managerEmailId}")
-	public Employee assignManager(@PathVariable("employeeEmailId") String employeeEmailId,
-			@PathVariable("managerEmailId") String managerEmailId) {
-				return employeeService.assignManager(employeeEmailId,managerEmailId );
-		
+//	@PutMapping("/{employeeEmailId}/manager/{managerEmailId}")
+//	public Employee assignManager(@PathVariable("employeeEmailId") String employeeEmailId,
+//			@PathVariable("managerEmailId") String managerEmailId) {
+//				return employeeService.assignManager(employeeEmailId,managerEmailId );
+//		
+//	}
+	@PutMapping
+	public ResponseEntity<Employee>  assignManager(@Valid @RequestBody Employee employee1) {
+		return new ResponseEntity<Employee>(employeeService. assignManager(employee1),HttpStatus.OK);
 	}
+//	@PutMapping("/{managerEmailId}")
+//	public Employee assignManager(@Valid @RequestBody Employee employee,String emailId){
+//		return  employeeRespository.findByEmailId(emailId)
+//				.map(employee -> {
+//					employee.setFirstName(newEmployee.getFirstName());
+//					employee.setLastName(newEmployee.getLastName());
+//					employee.setEmailId(newEmployee.getEmailId());
+//					return employeeRespository.save(employee);
+//				}).orElseThrow(()->new EmployeeNotFoundException("not found"));
+//		 
+//	}
+//	@PutMapping("/{managerEmailId}")
+//	public ResponseEntity<Employee>assignManager(@Valid @RequestBody Employee employee,String emailId){
+//		return new ResponseEntity<Employee>(employeeService.assignManager(employee,emailId),HttpStatus.CREATED);
+//		
+//	}
+	
 }

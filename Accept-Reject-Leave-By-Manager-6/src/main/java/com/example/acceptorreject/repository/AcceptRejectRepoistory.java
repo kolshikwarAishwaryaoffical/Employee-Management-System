@@ -11,10 +11,14 @@ import com.example.acceptorreject.model.LeaveApply;
 @Repository
 public interface AcceptRejectRepoistory extends JpaRepository<LeaveApply, Long>{
 	
-	@Query(value="select * from ems.leave where memail_id=?",nativeQuery=true)
-	LeaveApply findByEmailId(String memail_id);
-//	List<LeaveApply> getEmployeeByEmailId(String memail_id);
+	@Query(value="select * from ems.leave where email_id=?",nativeQuery=true)
+	LeaveApply findByEmailId(String email_id);
+	List<LeaveApply> findByMemailId(String memeail_id);
+  // List<LeaveApply> getEmployeeByEmailId(String memail_id);
 //	LeaveApply acceptLeave(LeaveApply leaveapply,String memail_id);
 //	  
 //	  LeaveApply rejectLeave(LeaveApply leaveapply,String memail_id);
+	String  deleteByEmailId(String email_id);
+	
+	
 }

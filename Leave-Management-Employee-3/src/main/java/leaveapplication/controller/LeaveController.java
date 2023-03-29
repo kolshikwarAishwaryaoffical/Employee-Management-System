@@ -2,11 +2,14 @@ package leaveapplication.controller;
 
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +25,7 @@ import leaveapplication.service.StatusService;
 
 @RestController
 @RequestMapping("/leave")
+@CrossOrigin("http://localhost:3000")
 public class LeaveController {
 	
 	@Autowired
@@ -42,6 +46,12 @@ public class LeaveController {
 //		return new ResponseEntity<OnlyStatus>(statusservice.getEmployeeByEmailId(email_id),HttpStatus.OK);
 //		
 //	}
+	
+	@GetMapping("/emp/{email_id}")
+	public List<LeaveApply> getEmpByEmailId(@PathVariable("email_id") String email_id){
+		return leaveService.getEmpByEmailId(email_id);
+		
+	}
 	
 	@PostMapping
 	public ResponseEntity<LeaveApply> saveLeave(@RequestBody LeaveApply  leaveApply ){

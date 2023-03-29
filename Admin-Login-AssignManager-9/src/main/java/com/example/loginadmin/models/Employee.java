@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 public class Employee {
 
 	@NotNull(message="employeeId should not be empty")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "employee_id")
 	private String employeeId;
 
@@ -155,13 +155,25 @@ public class Employee {
 		this.role = role;
 	}
 
+
+
 	public Long getMobileNumber() {
 		return mobileNumber;
 	}
 
+
+
+
+
+
 	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+
+
+
+
+
 
 	public String getGender() {
 		return gender;
@@ -251,6 +263,11 @@ public class Employee {
 	}
 
 
+
+
+
+
+	
 
 
 

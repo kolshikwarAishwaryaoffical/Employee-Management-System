@@ -8,7 +8,7 @@ import com.example.loginadmin.models.Manager;
 public interface EmployeeService {
      Employee saveEmployee(Employee employee);
 	 List<Employee> getAllEmployees();
-	 Employee assignManager(String email_id,String memail_id);
+	 Employee assignManager(Employee employee);
 	
 	
 	

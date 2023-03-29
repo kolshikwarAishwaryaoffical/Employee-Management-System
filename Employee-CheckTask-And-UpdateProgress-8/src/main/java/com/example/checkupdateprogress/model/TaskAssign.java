@@ -17,7 +17,7 @@ public class TaskAssign {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="taskId")
-	private long taskId;
+	private String taskId;
 
 	
 	@Column(name="taskName")
@@ -46,11 +46,13 @@ public class TaskAssign {
 	@Column(name="memail_id")
 	private String memailId;
 
-	public long getTaskId() {
+	
+
+	public String getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(long taskId) {
+	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
 
@@ -117,7 +119,7 @@ public class TaskAssign {
 		
 	}
 
-	public TaskAssign(long taskId, String taskName, String description, LocalDate dueDate, String taskStatus,
+	public TaskAssign(String taskId, String taskName, String description, LocalDate dueDate, String taskStatus,
 			String taskProgress, String emailId, String memailId) {
 		super();
 		this.taskId = taskId;
@@ -129,6 +131,8 @@ public class TaskAssign {
 		this.emailId = emailId;
 		this.memailId = memailId;
 	}
+
+	
 
 	
 

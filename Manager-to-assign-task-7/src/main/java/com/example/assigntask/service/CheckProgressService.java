@@ -1,6 +1,12 @@
 package com.example.assigntask.service;
 
+import java.util.List;
+
+import com.example.assigntask.modal.OnlyProgress;
+
 public interface CheckProgressService {
 
-	String getByEmailIdProgress(String email_id);
+	public List<OnlyProgress> getByEmailIdProgress(String email_id);
+	
+	
 }
